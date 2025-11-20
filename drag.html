@@ -41,30 +41,61 @@
 <script>
     const boxs = document.querySelectorAll(".box");
     const items = document.querySelectorAll(".item");
-    
+    let drag = null
      dragstart()
     dragend()
     dragover()
     dragleave()
+    // dragenter()
     drop()
 
 
      function dragstart(){
-        
+        items.forEach(item =>{
+            item.addEventListener("dragstart",()=>{
+                item.style.backgroundColor ="red"
+                drag = item
+            })
+        })
      }
 
      function dragend(){
-        
+        items.forEach(item =>{
+            item.addEventListener("dragend",()=>{
+                item.style.backgroundColor ="black"
+                drag = null
+            })
+        })
      }
 
      function dragover(){
-        
+        boxs.forEach(box =>{
+            box.addEventListener("dragover",(e)=>{
+                e.preventDefault()
+                box.style.backgroundColor = "gray"
+            })
+        })
      }
       function dragleave(){
-        
+        boxs.forEach(box =>{
+            box.addEventListener("dragleave",()=>{
+                box.style.backgroundColor = "white"
+            })
+        })
+     }
+      function dragenter(){
+        boxs.forEach(box =>{
+            box.addEventListener("dragenter",()=>{
+                box.style.backgroundColor = "green"
+            })
+        })
      }
       function drop(){
-        
+        boxs.forEach(box =>{
+            box.addEventListener("drop",()=>{
+                box.appendChild(drag)
+            })
+        })
      }
 </script>
 
